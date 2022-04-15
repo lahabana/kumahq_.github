@@ -17,7 +17,7 @@ In this meeting we will iterate over each repo in the kumahq github organization
 
 [all `triage/pending` issues in kumahq github search](https://github.com/search?l=&q=user%3Akumahq+label%3Atriage%2Fpending+state%3Aopen&type=issues)
 
-Stale tickets
+### Stale tickets
 
 It's the responsability of the maintainers to review tickets with `triage/stale`.
 Maintainers can do these things to deal with stale issues:
