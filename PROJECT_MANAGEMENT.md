@@ -13,7 +13,7 @@ In this meeting we will iterate over each repo in the kumahq github organization
   - If a ticket is unclear set `triage/needs-information`
   - If a ticket needs someone to try to reproduce `triage/needs-reproducing`
   - If a similar ticket already exists set `triage/duplicated` add a comment with the original ticket and close the newest ticket
-  - If a ticket looks good, set `triage/accepted`. A ticket being accepted doesn’t mean someone will work on it, just that it’s looking good. However, a closed ticket with `triage/accepted` is work that was actually done. On these ticket we will often add information about possible implementations or area 
+  - If a ticket looks good, set `triage/accepted`. A ticket being accepted doesn’t mean someone will work on it, just that it’s looking good. However, a closed ticket with `triage/accepted` is work that was actually done. On these ticket we will often add information about possible implementations or area.
 
 [all `triage/pending` issues in kumahq github search](https://github.com/search?l=&q=user%3Akumahq+label%3Atriage%2Fpending+state%3Aopen&type=issues)
 
