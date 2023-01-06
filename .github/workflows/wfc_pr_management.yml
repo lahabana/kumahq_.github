@@ -40,4 +40,4 @@ jobs:
       - name: comment
         if: inputs.comment
         run:
-          gh pr comment ${{ github.event.pull_request.number }} -R ${{ github.repository }} -c "${{ inputs.comment }}"
+          gh pr comment ${{ github.event.pull_request.number }} -R ${{ github.repository }} -b "${{ inputs.comment }}"
