@@ -3,9 +3,11 @@ on:
     inputs:
       matchTitle:
         description: "A regexp to match against the PR title"
+        type: string
         required: true
       matchLabel:
         description: "A set of labels to match PR against"
+        type: string
       approve:
         description: "Whether the PR should be auto approved"
         default: false
@@ -16,7 +18,7 @@ on:
         required: false
       comment:
         description: "Whether we should comment the actions we do"
-        default: true
+        type: string
         required: false
     secrets:
       github-token:
@@ -33,17 +35,11 @@ jobs:
       - name: approve
         if: inputs.approve
         run: |
-          if [[ "${{ inputs.comment }}" == "true" ]]; then
-            gh pr review ${{ github.event.pull_request.number }} -a -R ${{ github.repository }} -c "Auto approved by PR action ${{ github.workflow }} ${{ github.action }} ${{ github.run_number }}"
-          else
-            gh pr review ${{ github.event.pull_request.number }} -a -R ${{ github.repository }}
-          fi
+          gh pr review ${{ github.event.pull_request.number }} -a -R ${{ github.repository }} -c "Auto approved by PR action ${{ github.workflow }} ${{ github.action }} ${{ github.run_number }}"
       - name: merge
         if: inputs.merge
         run: |
-          if [[ "${{ inputs.comment }}" == "true" ]]; then
-            gh pr comment ${{ github.event.pull_request.number }} -b "Enabling auto merge ${{ github.workflow }} ${{ github.action }} ${{ github.run_number }}"
-          fi
+          gh pr comment ${{ github.event.pull_request.number }} -b "Enabling auto merge ${{ github.workflow }} ${{ github.action }} ${{ github.run_number }}"
           gh pr merge ${{ github.event.pull_request.number }} --auto -R ${{ github.repository }}
       - name: comment
         if: inputs.comment
