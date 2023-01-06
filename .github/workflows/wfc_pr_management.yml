@@ -10,11 +10,11 @@ on:
         type: string
       approve:
         description: "Whether the PR should be auto approved"
-        default: false
+        type: boolean
         required: false
       merge:
         description: "Whether the PR should be auto merged"
-        default: false
+        type: boolean
         required: false
       comment:
         description: "Whether we should comment the actions we do"
