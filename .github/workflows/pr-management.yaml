@@ -1,6 +1,6 @@
 name: pr-mgmt
 on:
-  pull_request
+  pull_request: {}
 
 jobs:
   pr-mgmt:
