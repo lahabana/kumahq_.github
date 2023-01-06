@@ -10,5 +10,4 @@ jobs:
       merge: true
       matchTitle: "AUTO MERGE"
       matchLabel: "auto-merge"
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      github-token: ${{ secrets.GITHUB_TOKEN }}
