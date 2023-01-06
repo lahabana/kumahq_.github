@@ -39,7 +39,7 @@ jobs:
       - name: merge
         if: inputs.merge
         run: |
-          gh pr comment ${{ github.event.pull_request.number }} -b "Enabling auto merge by PR [action](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" 
+          gh pr comment ${{ github.event.pull_request.number }} -b "Enabling auto merge by PR [action](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" -R ${{ github.repository }}
           gh pr merge ${{ github.event.pull_request.number }} --auto --squash -R ${{ github.repository }}
       - name: comment
         if: inputs.comment
