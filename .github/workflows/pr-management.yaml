@@ -1,0 +1,14 @@
+name: pr-mgmt
+on:
+  pull_request
+
+jobs:
+  pr-mgmt:
+    uses: kumahq/.github/.github/workflows/wfc_pr_management.yml@main
+    with:
+      approve: true
+      merge: true
+      matchTitle: "AUTO MERGE"
+      matchLabel: "auto-merge"
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

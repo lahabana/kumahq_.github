@@ -1,0 +1,45 @@
+on:
+  workflow_call:
+    inputs:
+      matchTitle:
+        description: "A regexp to match against the PR title"
+        required: true
+      matchLabel:
+        description: "A set of labels to match PR against"
+      approve:
+        description: "Whether the PR should be auto approved"
+        default: false
+        required: false
+      merge:
+        description: "Whether the PR should be auto merged"
+        default: false
+        required: false
+      comment:
+        description: "Whether we should comment the actions we do"
+        default: true
+        required: false
+
+jobs:
+  open:
+    if: github.event.pull_request && (contains(github.event.pull_request.labels.*.name, inputs.matchLabel) || contains(github.event.pull_request.title, inputs.matchTitle))
+    runs-on: ubuntu-latest
+    steps:
+      - name: approve
+        if: inputs.approve
+        run: |
+          if [[ "${{ inputs.comment }}" == "true" ]]; then
+            gh pr review ${{ github.event.pull_request.number }} -a -R ${{ github.repository }} -c "Auto approved by PR action ${{ github.workflow }} ${{ github.action }} ${{ github.run_number }}"
+          else
+            gh pr review ${{ github.event.pull_request.number }} -a -R ${{ github.repository }}
+          fi
+      - name: merge
+        if: inputs.merge
+        run: |
+          if [[ "${{ inputs.comment }}" == "true" ]]; then
+            gh pr comment ${{ github.event.pull_request.number }} -b "Enabling auto merge ${{ github.workflow }} ${{ github.action }} ${{ github.run_number }}"
+          fi
+          gh pr merge ${{ github.event.pull_request.number }} --auto -R ${{ github.repository }}
+      - name: comment
+        if: inputs.comment
+        run:
+          gh pr comment ${{ github.event.pull_request.number }} -R ${{ github.repository }} -c "${{ inputs.comment }}"
