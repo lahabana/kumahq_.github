@@ -35,11 +35,11 @@ jobs:
       - name: approve
         if: inputs.approve
         run: |
-          gh pr review ${{ github.event.pull_request.number }} -a -R ${{ github.repository }} -b "Auto approved by PR action ${{ github.workflow }} ${{ github.action }} ${{ github.run_number }}"
+          gh pr review ${{ github.event.pull_request.number }} -a -R ${{ github.repository }} -b "Auto approved by PR action ${{ github.workflow }} ${{ github.action }} ${{ github.run_id }}"
       - name: merge
         if: inputs.merge
         run: |
-          gh pr comment ${{ github.event.pull_request.number }} -b "Enabling auto merge ${{ github.workflow }} ${{ github.action }} ${{ github.run_number }}"
+          gh pr comment ${{ github.event.pull_request.number }} -b "Enabling auto merge ${{ github.workflow }} ${{ github.action }} ${{ github.run_number }}" -R ${{ github.repository }}
           gh pr merge ${{ github.event.pull_request.number }} --auto -R ${{ github.repository }}
       - name: comment
         if: inputs.comment
