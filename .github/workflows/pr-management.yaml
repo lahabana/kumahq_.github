@@ -9,7 +9,6 @@ jobs:
     with:
       approve: true
       merge: true
-      matchTitle: "AUTO MERGE"
       matchLabel: "auto-merge"
     secrets:
       github-token: ${{ secrets.GITHUB_TOKEN }}

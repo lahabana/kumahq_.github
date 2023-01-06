@@ -1,13 +1,10 @@
 on:
   workflow_call:
     inputs:
-      matchTitle:
-        description: "A regexp to match against the PR title"
-        type: string
-        required: true
       matchLabel:
         description: "A set of labels to match PR against"
         type: string
+        required: false
       approve:
         description: "Whether the PR should be auto approved"
         type: boolean
