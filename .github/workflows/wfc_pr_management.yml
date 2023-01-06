@@ -24,7 +24,6 @@ on:
       github-token:
         description: 'GitHub Token'
         required: true
-
 jobs:
   open:
     if: github.event.pull_request && (contains(github.event.pull_request.labels.*.name, inputs.matchLabel) || contains(github.event.pull_request.title, inputs.matchTitle))
