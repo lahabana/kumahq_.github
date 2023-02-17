@@ -30,7 +30,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: approve
-        if: inputs.approve
         if: fromJSON(inputs.approve)
         env:
           GITHUB_TOKEN: ${{  secrets.github-token-approve || secrets.github-token }}
@@ -44,6 +43,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github-token }}
       - name: comment
         if: inputs.comment
-        uses: uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: inputs.comment
